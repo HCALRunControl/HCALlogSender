@@ -46,7 +46,7 @@ public class HCALlogSender {
   public static void main(String[] args) {
     HCALlogSender logSender = new HCALlogSender("John_test"); // TODO: John_test is the name of the app sending the log. 
                                                               // This could be changed to HCALlogSender or a user-defined name (e.g. ngccmserver)
-		PropertyConfigurator.configure("/nfshome0/johakala/test/RCMS.properties"); //TODO unhardcode/refactor this
+    PropertyConfigurator.configure("/nfshome0/johakala/test/RCMS.properties"); //TODO unhardcode/refactor this
     String message = args[0];
     logSender.logger.error(message); // TODO: maybe enable different log levels
   }
