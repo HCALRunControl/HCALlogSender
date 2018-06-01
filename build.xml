@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="jar" name="HCALlogSender">
+
+  <property environment="env"/>
+  <property file="../../tomcat/webapps/rcms/WEB-INF/conf/RCMS.properties"/>
+  <property name="rcms.webapp" value="${rcms.framework}/rcms"/>
+  <property name="rcms.classes" value="${rcms.webapp}/WEB-INF/classes"/>
+  <property name="rcms.libs" value="${rcms.webapp}/WEB-INF/lib"/>
+  <property name="rcms.src" value="${rcms.webapp}/WEB-INF/src"/>
+  <property name="HCALlogSender.classes" value="classes"/>
+
+  <!-- TODO: 
+         once the HCALFM refactorXML branch gets merged in and deployed on the build machine
+         we can use the "official" HCALFM.jar that lives in ~daqowner/tomcat/webapps/ROOT/functionmanagers like so:
+    -->
+  <!--
+    <property name="levelOneHCALFM.location" value="../../tomcat/webapps/ROOT/functionmanagers"/>
+    -->
+  <property name="outJarDir" value="./jars"/>
+  <property name="HCALlogSender.jar" value="${outJarDir}/HCALlogSender.jar"/>
+  <property name="debuglevel" value="source,lines,vars"/>
+  <property name="target" value="1.8"/>
+  <property name="source" value="1.8"/>
+
+  <path id="rcms.classpath">
+    <fileset dir="${rcms.libs}">
+      <include name="*.jar"/>
+    </fileset>
+    <pathelement location="${rcms.classes}"/>
+  </path>
+
+
+  <path id="HCALlogSender.classpath">
+    <pathelement location="${outJarDir}"/>
+    <path refid="rcms.classpath"/>
+  </path>
+
+  <target name="init">
+    <mkdir dir="${HCALlogSender.classes}"/>
+    <copy includeemptydirs="false" todir="${HCALlogSender.classes}">
+      <fileset dir="src">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+    <mkdir dir="${outJarDir}"/>
+  </target>
+
+  <target depends="init" name="compile">
+    <echo message="compiling ${ant.project.name}: ${ant.file}"/>
+    <javac debug="true" debuglevel="${debuglevel}" destdir="classes" includeantruntime="false" source="${source}" target="${target}">
+      <src path="src"/>
+      <classpath refid="HCALlogSender.classpath"/>
+    </javac>
+  </target>
+
+  <target name="jar" depends="init, compile">
+    <echo message="making jar for ${ant.project.name}"/>
+    <jar file="${HCALlogSender.jar}">
+      <fileset dir="${HCALlogSender.classes}"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserActionException.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/Parameter*.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/FunctionManagerParameter*.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/type/ParameterType.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/type/*.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserFunctionManager.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserStateMachineDefinition.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserActions.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserEventHandler.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserErrorHandler.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/EventHandler.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/EventPriority.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/FunctionManagerException.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/util/error/SentinelNotifierCommunicationException.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/resource/qualifiedresource/*.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/resource/*.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/util/logger/RCMSLogger.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/util/logger/NDCInfo.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/resourceservice/db/resource/xdaq/*.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/resourceservice/db/resource/*"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/statemachine/StateChangedListener.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/statemachine/TransitionFailureListener.class"/>
+      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/util/logsession/LogSessionException.class"/>
+      <zipgroupfileset dir="../RunControl/framework/rcms/WEB-INF/lib/" includes="log4j-1.2.11.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="HCALlogSender.HCALlogSender"/>
+        <attribute name="Class-Path" value="HCALlogSender"/>
+      </manifest>
+    </jar>
+  </target>
+
+</project>
