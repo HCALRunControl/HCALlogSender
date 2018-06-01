@@ -1,4 +1,5 @@
 Simple script to send messages to the logCollector 
+
 to build, go on a teststand machine with RCMS installed:
 ```
     daqowner:~ # cd /home/daqowner/TriDAS
