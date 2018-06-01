@@ -13,5 +13,5 @@ to build, go on a teststand machine with RCMS installed:
   * it needs to be run on a machine on the cmsusr network with java1.8 installed (e.g. x2go01).
   * to send e.g. the message "this is a test error!" to the logCollector logs:
 ```
-    myusername@x2go01 ~ # java -jar HCALlogSender.jar 'this is a test error!'
+    myusername@x2go01:~ # java -jar HCALlogSender.jar 'this is a test error!'
 ```
