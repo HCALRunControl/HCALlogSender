@@ -2,9 +2,9 @@ Simple script to send messages to the logCollector
 to build, go on a teststand machine with RCMS installed:
 ```
     daqowner:~ $ cd /home/daqowner/TriDAS
-    daqowner:~/TriDAS $ git clone git@github.com:HCALRunControl/HCALlogSender.git
-    daqowner:~/TriDAS $ cd HCALlogSender
-    ant
+    daqowner:~/TriDAS # git clone git@github.com:HCALRunControl/HCALlogSender.git
+    daqowner:~/TriDAS # cd HCALlogSender
+    daqowner:~/TriDAS # ant
 ```
   the compiled library will show up in the `jars` subdirectory
  
