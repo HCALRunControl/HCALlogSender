@@ -12,8 +12,10 @@ import rcms.util.logger.RCMSLogger; // reuse the RCMS implementation for log4j
 
 public class HCALlogSender {
   RCMSLogger logger;
+
   /**
    * constructor to set up the log sender, specifying what application name will appear next to the log message
+   * @param name: one argument, the name (typically class name and instance) of the app sending the log
    */
   public HCALlogSender(String name) {
     this.logger = new RCMSLogger(name);
