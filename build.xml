@@ -57,29 +57,8 @@
     <echo message="making jar for ${ant.project.name}"/>
     <jar file="${HCALlogSender.jar}">
       <fileset dir="${HCALlogSender.classes}"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserActionException.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/Parameter*.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/FunctionManagerParameter*.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/type/ParameterType.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/parameter/type/*.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserFunctionManager.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserStateMachineDefinition.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserActions.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserEventHandler.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/user/UserErrorHandler.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/EventHandler.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/EventPriority.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/fw/FunctionManagerException.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/util/error/SentinelNotifierCommunicationException.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/resource/qualifiedresource/*.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/fm/resource/*.class"/>
       <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/util/logger/RCMSLogger.class"/>
       <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/util/logger/NDCInfo.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/resourceservice/db/resource/xdaq/*.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/resourceservice/db/resource/*"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/statemachine/StateChangedListener.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/statemachine/TransitionFailureListener.class"/>
-      <fileset dir="../RunControl/framework/rcms/WEB-INF/classes/" includes="rcms/util/logsession/LogSessionException.class"/>
       <zipgroupfileset dir="../RunControl/framework/rcms/WEB-INF/lib/" includes="log4j-1.2.11.jar"/>
       <manifest>
         <attribute name="Main-Class" value="HCALlogSender.HCALlogSender"/>
