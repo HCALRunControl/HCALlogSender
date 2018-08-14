@@ -1,6 +1,6 @@
 Simple script to send messages to the logCollector 
 
-to build, go on a teststand machine with RCMS installed:
+To build, go on a teststand machine with RCMS installed (_not_ cmsrc-hcal or cms904rc-hcal, as production machines are installed differently than teststand machines). Then:
 ```
     daqowner:~ # cd /home/daqowner/TriDAS
     daqowner:~/TriDAS # git clone git@github.com:HCALRunControl/HCALlogSender.git
